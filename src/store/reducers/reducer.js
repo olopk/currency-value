@@ -38,6 +38,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 favourites: state.favourites.filter(el => el.code !== action.currency.code)
             }
+        default: return state
     }
 }
 
