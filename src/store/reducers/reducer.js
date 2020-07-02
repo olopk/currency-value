@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     currencies: [],
+    currenciesDate: null,
     favourites: [],
     loading: false,
     error: null
@@ -19,6 +20,7 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 currencies: action.currencies,
+                currenciesDate: action.date,
                 loading: false,
                 error: null
             }
@@ -26,17 +28,20 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading: false,
+                currenciesDate: null,
                 error: action.error
             }
-        case actionTypes.ADD_FAVOURITE:
-            return{
-                ...state,
-                favourites: state.favourites.find(el => el.code === action.currency.code) ? state.favourites : state.favourites.push(action.currency)
+        case actionTypes.TOGGLE_FAVOURITE:
+            let newFavs = [...state.favourites];
+            const favExists = state.favourites.find(el => el === action.currency);
+            if(favExists){
+                newFavs = newFavs.filter(el => el !== action.currency)
+            }else{
+                newFavs.push(action.currency)
             }
-        case actionTypes.REM_FAVOURITE:
             return{
                 ...state,
-                favourites: state.favourites.filter(el => el.code !== action.currency.code)
+                favourites: newFavs
             }
         default: return state
     }

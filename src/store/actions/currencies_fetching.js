@@ -3,14 +3,20 @@ import axios from 'axios';
 
 export const fetchCurrencies = () => {
     return async dispatch => {
-        dispatch(actionTypes.FETCH_CURRENCIES_START);
+
+        dispatch({type: actionTypes.FETCH_CURRENCIES_START});
 
         await axios.get('http://api.nbp.pl/api/exchangerates/tables/a/')
         .then(data => {
-            console.log(data);
+            const {rates, effectiveDate} = data.data[0];
+            dispatch({
+                type: actionTypes.FETCH_CURRENCIES_SUCCESS,
+                currencies: rates,
+                currenciesDate: effectiveDate
+            });
         })
         .catch(error => {
-            console.log(error);
+            dispatch({type: actionTypes.FETCH_CURRENCIES_FAIL, error: error});
         })
     }
 }
