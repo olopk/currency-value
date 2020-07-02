@@ -43,6 +43,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 favourites: newFavs
             }
+        case actionTypes.REMOVE_ALL_FAVOURITES:
+            return{
+                ...state,
+                favourites: []
+            }
         default: return state
     }
 }
