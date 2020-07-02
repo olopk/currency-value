@@ -28,8 +28,6 @@ Features:
 After cloning remote repository to the local, use "npm install" to get all needed dependencies
 
 ## Playground
-
-</br>
 [Playground](http://olopk.github.io/currency-value)
 
 ## Author:
