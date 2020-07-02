@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/styles';
 import SingleDataItem from './SingleDataItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useDispatch} from 'react-redux';
-import {TOGGLE_FAVOURITE} from '../../store/actions/actionTypes';
+import {TOGGLE_FAVOURITE, REMOVE_ALL_FAVOURITES} from '../../store/actions/actionTypes';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
 
 const DataContainer = (props) => {
     const classes = useStyles();
-    const toggleFav = useDispatch();
+    const dispatch = useDispatch();
 
     const {currencies, type, favourites} = props;
 
@@ -41,7 +42,7 @@ const DataContainer = (props) => {
                     rate={curr.mid}
                     color={favourites && favourites.find(el => el.code === curr.code) ? 'secondary' : 'primary'}
                     type={type}
-                    toggleFav={()=>toggleFav({type: TOGGLE_FAVOURITE, currency: curr})}
+                    toggleFav={()=>dispatch({type: TOGGLE_FAVOURITE, currency: curr})}
                      />
             )
         })
@@ -51,6 +52,15 @@ const DataContainer = (props) => {
         <div className={classes.root}>
             <SingleDataItem name='Nazwa' code='Kod' rate='Wartość' />
             {content}
+            {type === 'favourites' && currencies.length !== 0 
+                ? <Button 
+                     variant="contained"
+                     color="secondary"
+                     style={{marginTop: '5vh'}}
+                     onClick={()=>dispatch({type: REMOVE_ALL_FAVOURITES})}
+                     >Usuń wszystko</Button>
+                : null
+            }
         </div>
     )
 }
