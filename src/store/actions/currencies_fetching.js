@@ -12,7 +12,7 @@ export const fetchCurrencies = () => {
             dispatch({
                 type: actionTypes.FETCH_CURRENCIES_SUCCESS,
                 currencies: rates,
-                currenciesDate: effectiveDate
+                date: effectiveDate
             });
         })
         .catch(error => {

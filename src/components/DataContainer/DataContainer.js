@@ -23,7 +23,7 @@ const DataContainer = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const {currencies, type, favourites} = props;
+    const {currencies, type, favourites, currenciesDate} = props;
 
     let content = <CircularProgress className={classes.icon}/>;
 
@@ -33,7 +33,6 @@ const DataContainer = (props) => {
 
     if(currencies.length !== 0){
         content = currencies.map((curr, index) => {
-
             return (
                 <SingleDataItem 
                     key={index} 
@@ -50,6 +49,7 @@ const DataContainer = (props) => {
 
     return(
         <div className={classes.root}>
+            {currenciesDate ? <span style={{marginBottom: '2vh'}}>Dane aktualne na dzień: {currenciesDate}</span> : null}
             <SingleDataItem name='Nazwa' code='Kod' rate='Wartość' />
             {content}
             {type === 'favourites' && currencies.length !== 0 
