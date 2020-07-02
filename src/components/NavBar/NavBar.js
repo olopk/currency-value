@@ -33,8 +33,8 @@ export default function DisabledTabs() {
         className={classes.tabs}
         centered
       >
-        <Tab label="Currencies" value={1} icon={<EuroIcon />} component={Link} to='/'/>
-        <Tab label="Favourite" value={2} icon={<FavoriteIcon/>} component={Link} to='/favourites'/> 
+        <Tab label="Waluty" value={1} icon={<EuroIcon />} component={Link} to='/'/>
+        <Tab label="Ulubione" value={2} icon={<FavoriteIcon/>} component={Link} to='/favourites'/> 
       </Tabs>
     </Paper>
   );

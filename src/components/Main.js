@@ -10,8 +10,11 @@ import {fetchCurrencies} from '../store/actions/currencies_fetching';
 export default function Main() {
 
   const currencies = useSelector(state => state.currencies)
+  const currenciesDate = useSelector(state => state.currenciesDate)
   const favourites = useSelector(state => state.favourites)
   const fetchData = useDispatch()
+
+  console.log(currenciesDate)
 
   useEffect(()=>{
   if(currencies.length === 0){
@@ -28,6 +31,7 @@ export default function Main() {
                 <DataContainer
                     type='favourites'
                     currencies={favourites}
+                    currenciesDate={currenciesDate}
                 />
                 )}/>
               <Route path='/' render={()=>(
@@ -35,6 +39,7 @@ export default function Main() {
                      type='currencies'
                      currencies={currencies}
                      favourites={favourites}
+                     currenciesDate={currenciesDate}
                   />
               )}/>
           </Switch>
