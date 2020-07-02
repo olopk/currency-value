@@ -28,13 +28,17 @@ const useStyles = makeStyles({
 const SingleDataItem = (props) => {
 
     const classes = useStyles();
+    const { name, color, code, rate, type, toggleFav} = props;
 
     return(
         <div className={classes.root}>
-            <div className={classes.block}><span>{props.name}</span></div>
-            <div className={classes.block}><span>{props.code}</span></div>
-            <div className={classes.block}><span>{props.rate}</span></div>
-            <FavoriteIcon className={classes.icon}/>
+            <div className={classes.block}><span>{name}</span></div>
+            <div className={classes.block}><span>{code}</span></div>
+            <div className={classes.block}><span>{rate}</span></div>
+            <FavoriteIcon 
+                color={type === 'favourites' ? 'secondary' : color}
+                className={classes.icon}
+                onClick={toggleFav}/>
         </div>
     )
 }
