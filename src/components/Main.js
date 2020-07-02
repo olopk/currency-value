@@ -14,8 +14,6 @@ export default function Main() {
   const favourites = useSelector(state => state.favourites)
   const fetchData = useDispatch()
 
-  console.log(currenciesDate)
-
   useEffect(()=>{
   if(currencies.length === 0){
        fetchData(fetchCurrencies())

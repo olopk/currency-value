@@ -24,7 +24,7 @@ export default function DisabledTabs() {
   }
 
   return (
-    <Paper square>
+    <Paper square style={{boxShadow: 'none'}}>
       <Tabs
         value={value}
         indicatorColor="primary"
